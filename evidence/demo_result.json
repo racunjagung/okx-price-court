@@ -1,0 +1,59 @@
+{
+  "demo": "OKX Price Court \u2014 Internet Court Partner Demo Lab",
+  "partner": "OKX (Internet Court founding member)",
+  "contract": {
+    "contractAddress": "0xAC948Ac09b70fd25F532789B144c973F808F1B9b",
+    "deployTx": "0x583a5d8869ae2942ae44598d12cb130f6c782c2abdeec2c3cb3cdf0f8a40c80a",
+    "chainId": 61997,
+    "rpc": "https://studio-dev.genlayer.com/api",
+    "explorer": "https://explorer-studio-dev.genlayer.com/address/0xAC948Ac09b70fd25F532789B144c973F808F1B9b",
+    "deployedAt": "2026-11-21T01:04:03Z"
+  },
+  "cases": [
+    {
+      "case_id": "case-001-btc-2026-11-19",
+      "instrument": "BTC-USDT",
+      "date": "2026-11-19",
+      "threshold": "59000",
+      "claim": "Agent A sold Agent B a BTC price-protection note: it pays out if BTC-USDT closed at or above 59,000 USDT on OKX on 2026-11-19. Agent A claims the note paid out; Agent B disputes it.",
+      "fileTx": "0x1e4c411ebf93aa4fa8bd26c6062f3e3336eb9f629dcd6deecbe78fcb01327110",
+      "resolveTx": "0x407747e2564162fd27a4e76e831259c1025f26f91c6d612ec15a2203d3b40a76",
+      "final": {
+        "case_id": "case-001-btc-2026-11-19",
+        "instrument": "BTC-USDT",
+        "date": "2026-11-19",
+        "threshold": "59000",
+        "claim": "Agent A sold Agent B a BTC price-protection note: it pays out if BTC-USDT closed at or above 59,000 USDT on OKX on 2026-11-19. Agent A claims the note paid out; Agent B disputes it.",
+        "filed_by": "0xF1487E28fd0e1cD8BAb4DCCF7Cee079Ee3404E15",
+        "status": "RESOLVED",
+        "close": "61984.8",
+        "verdict": true,
+        "ruling": "Verdict: TRUE; the claim pays out because the OKX BTC-USDT closing price on 2026-11-19 was 61,984.8 USDT, which is above the 59,000 USDT threshold.",
+        "evidence_url": "https://www.okx.com/api/v5/market/history-candles?instId=BTC-USDT&bar=1Dutc&after=1795219200000&limit=5"
+      }
+    },
+    {
+      "case_id": "case-002-btc-2026-11-18",
+      "instrument": "BTC-USDT",
+      "date": "2026-11-18",
+      "threshold": "65000",
+      "claim": "Two trading agents escrowed a deal that settles only if BTC-USDT closed at or above 65,000 USDT on OKX on 2026-11-18. The buyer claims the condition was met; the seller disputes it.",
+      "fileTx": "0x23a199246d5e00c38206a636a2c9ba76d8ba19c573b123183ee204851de21b42",
+      "resolveTx": "0xa860c274c55a606b088e544a9a20520326c61d624ec72c1ae10f17378d144c7d",
+      "final": {
+        "case_id": "case-002-btc-2026-11-18",
+        "instrument": "BTC-USDT",
+        "date": "2026-11-18",
+        "threshold": "65000",
+        "claim": "Two trading agents escrowed a deal that settles only if BTC-USDT closed at or above 65,000 USDT on OKX on 2026-11-18. The buyer claims the condition was met; the seller disputes it.",
+        "filed_by": "0xF1487E28fd0e1cD8BAb4DCCF7Cee079Ee3404E15",
+        "status": "RESOLVED",
+        "close": "63070.6",
+        "verdict": false,
+        "ruling": "The buyer's claim is dismissed because the official OKX closing price for BTC-USDT on 2026-11-18 was 63,070.6 USDT, failing to reach the required 65,000 USDT threshold.",
+        "evidence_url": "https://www.okx.com/api/v5/market/history-candles?instId=BTC-USDT&bar=1Dutc&after=1795132800000&limit=5"
+      }
+    }
+  ],
+  "recordedAt": "2026-11-21T01:07:58Z"
+}

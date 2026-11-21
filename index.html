@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OKX Price Court — Internet Court Demo Lab</title>
+<style>
+  body { font-family: system-ui, sans-serif; background:#0b0e1a; color:#e8ebf5;
+         margin:0; padding:32px 16px; }
+  main { max-width: 860px; margin: 0 auto; }
+  h1 { font-size: 28px; margin: 4px 0 2px; }
+  .sub { color:#9aa3c0; margin-bottom: 24px; }
+  .logos { display:flex; gap:28px; align-items:center; margin: 18px 0 8px; flex-wrap: wrap; }
+  .logos img { height: 30px; }
+  .card { background:#141830; border:1px solid #262c52; border-radius:14px;
+          padding:20px 22px; margin:16px 0; }
+  .verdict { font-weight:700; padding:2px 10px; border-radius:999px; font-size:13px; }
+  .upheld { background:#0d3b2e; color:#3ddc97; }
+  .rejected { background:#3b1220; color:#ff6b81; }
+  .meta { color:#9aa3c0; font-size:14px; line-height:1.55; }
+  .ruling { font-style: italic; margin-top:10px; }
+  a { color:#7aa2ff; }
+  code { background:#0b0e1a; padding:1px 6px; border-radius:6px; font-size:12.5px; }
+</style>
+</head>
+<body>
+<main>
+  <div class="logos">
+    <img src="assets/tic-logo-red.svg" alt="Internet Court">
+    <img src="assets/genlayer-logo-white-cropped.svg" alt="GenLayer">
+    <img src="assets/okx-mark-white.svg" alt="OKX">
+  </div>
+  <h1>OKX Price Court</h1>
+  <div class="sub">An Internet Court demo on GenLayer — validators fetch the
+    evidence from OKX (founding member of the Internet Court consortium) and
+    rule on agent-to-agent disputes by consensus. Network: GenLayer Studio
+    Next testnet (chainId 61997). Data below is loaded from
+    <code>evidence/demo_result.json</code>.</div>
+  <div id="contract" class="meta"></div>
+  <div id="cases"></div>
+</main>
+<script>
+fetch('evidence/demo_result.json').then(r => r.json()).then(d => {
+  const c = d.contract;
+  document.getElementById('contract').innerHTML =
+    'Contract: <a href="' + c.explorer + '">' + c.contractAddress + '</a>' +
+    ' &middot; deploy tx <code>' + c.deployTx + '</code>';
+  document.getElementById('cases').innerHTML = d.cases.map(x => {
+    const f = x.final, up = f.verdict === true;
+    return '<div class="card">' +
+      '<div><strong>' + f.case_id + '</strong> ' +
+      '<span class="verdict ' + (up ? 'upheld">CLAIM UPHELD' : 'rejected">CLAIM REJECTED') + '</span></div>' +
+      '<div class="meta" style="margin-top:8px">' + f.claim + '</div>' +
+      '<div class="meta" style="margin-top:8px">Disputed fact: ' + f.instrument +
+      ' daily close on ' + f.date + ' at or above ' + f.threshold + ' USDT' +
+      '<br>OKX official close: <strong style="color:#e8ebf5">' + f.close + ' USDT</strong>' +
+      '<br>Evidence: <a href="' + f.evidence_url + '">OKX history-candles API</a></div>' +
+      '<div class="ruling">&ldquo;' + f.ruling + '&rdquo;</div>' +
+      '</div>';
+  }).join('');
+});
+</script>
+</body>
+</html>
